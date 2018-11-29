@@ -2,7 +2,7 @@
 
 ## Introduction
 
->This Node JS project is designed to grab NHL player names and ids since the NHL's API does not provide this ability currently. 
+>This Node JS project is designed to grab NHL player names and ids so they can be stored in a DB table since the NHL's api does not have an endpoint that lists every player anymore.
 
 ## Code Samples
 
