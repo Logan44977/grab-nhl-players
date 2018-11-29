@@ -43,7 +43,39 @@ function callPromise(){
         data = JSON.parse(data);
 
         for (i = 0; i < data.data.length; i++){
-            dataString += `(${data.data[i].playerId}, "${data.data[i].playerName}")`;
+
+            let position, team = '';
+
+            // gets the players position put in format I want
+            switch(data.data[i].playerPositionCode ){
+                case 'C':
+                    position = 'Center';
+                    break;
+                case 'L':
+                    position = "Left Wing";
+                    break;
+                case 'R':
+                    position = "Right Wing";
+                    break;
+                case 'D':
+                    position = "Defenseman";
+                    break;
+                default :
+                    position = null;
+            }
+
+             // Only grabs player's current team
+            const teamNames = data.data[i].playerTeamsPlayedFor.length 
+
+            if(teamNames.length > 3){
+                team = teamNames[teamNames.length - 3] + teamNames[teamNames.length - 2] + teamNames[teamNames.length - 1];
+            }
+            else{
+                team = data.data[i].playerTeamsPlayedFor;
+            }
+
+
+            dataString += `(${data.data[i].playerId}, "${data.data[i].playerName}", "${data.data[i].playerFirstName}", "${data.data[i].playerLastName}", "${position}", "${team}")`;
 
             if(i !== data.data.length - 1){
                 // seperates the rows (but not the last one)
@@ -51,7 +83,7 @@ function callPromise(){
             }
         }
 
-        const sql = `INSERT IGNORE INTO players_table(playerId, playerName) VALUES ${dataString}`;
+        const sql = `INSERT IGNORE INTO players_table(playerId, playerName, playerFirst, playerLast, playerPosition, playerTeam) VALUES ${dataString}`;
 
         con.query(sql, function(err, result){
             if(err) throw err;
