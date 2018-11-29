@@ -6,14 +6,9 @@
 
 ## Code Samples
 
-<<<<<<< HEAD
-> To run this project make sure that you have NPM, MYSQL, and Node installed on your machine. Then run
-<Code>npm install</Code> and then <Code>Node index.js</Code>
-=======
 > To run this project make sure that you have NPM, MYSQL, and Node installed on your machine. Then run:
 <Code>npm install</Code> and then <Code>Node index.js</Code>
 
->>>>>>> 714f803b528d0cb737883505e6e499e47c550cd4
 
 >You will need to replace the ENV variables with your own DB info or create an .env file in the root directory.
->The DB table I use is named players_table & has 2 columns, playerId & playerName. The playerId is used as the table's PK so that it doesn't write a player twice. 
+>The DB table I use is named players_table & has several columns: playerId, playerName, playerFirst, playerLast, playerPosition, and playerTeams. The playerId is used as the table's PK so that it doesn't write a player to the db twice. 
